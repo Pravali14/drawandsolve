@@ -1,0 +1,126 @@
+o
+    ·Œ¸f1  ã                   @   s¸   d dl Z d dlZd dlZd dlmZ d dl mZ d dl	m
+Z
+ d dl
+mZ d dl
+mZ d d lmZ d dlmZ d d	lmZ d d
+lmZ d dlZG d
+d„ dƒZed
+krZeƒ Ze ¡  dS dS )é    N)ÚHandDetector)Ú
+VolumeControl)ÚVirtualPainter)ÚPresentationController)ÚPongGame)ÚVirtualMouse)Ú
+HandGestureAI)ÚVirtualKeyboard)ÚArmCurlsCounterc                   @   sF   e Zd Zdd„ Zdd„ Zdd„ Zd d„ Zd	d
+„ Z d
+d„ Zddd„Z	d
+S )ÚCVAppc                 C   sª   t  d¡| _| j dd¡ | j dd¡ d}td d| _tƒ | _ tƒ | _	t
+ƒ | _
+tƒ | _
+tƒ | _t|ƒ| _tƒ | _tƒ | _d	| _d	| _t  d
+t j¡| _t  | jd
+¡| _d S )Nr   é   i   é   iÐ  Z'AIzaSyBLoq2qPnvxqfGfyqZb2ifo202nkcPPKKAé   )ÚmaxHandsFzGC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\MenuIcon2.png)é(   r   )Úcv2ÚVideoCaptureÚcamÚsetÚhdÚdetectorr   Ú
+vol_controlr   Ú	vir_paintr   Ú
+present_appr    Ú	vir_mouser   Ú	pong_gamer   Ú math_air	   Úvir_keyboardr
+   ÚfitÚoverÚshow_optionsÚimreadÚIMREAD_UNCHANGEDÚicon_imgÚresize)ÚselfÚ api_key© r'   úPC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\Home_Page\home_page.pyÚ__init__   s"   
+zCVApp.__init__c              	   C   sx  t   ¡ }d}d}t   ¡ | |k r±| j ¡ \}}|sqt |d¡}tt   ¡ | | d ƒd }t   ¡ | d tj  } t |d dd	d
+¡ t |d |d
+fd	d¡ t ||d
+f|d dfdd¡ d}d}	t|d |	t 	| ¡  ƒ}
+t|d |	t 
+| ¡  ƒ}
+t 
+|||	dd¡ t 
+||
+|
+fddd¡ t |ddtj
+ddd¡  t d|¡ t d¡ |s©d}t   ¡ | |k s|rºt d¡ d S d S )Nr   Fr   é   é–   é   )r+   é,  )i¶  é  )r   éÿ   r   é   r.   éÿÿÿÿi'  é
+   i•  )r   r/   r/   )i&  éú   é   r   ©r   r   r/   )r/   r   r   z
+Loading...)éô  iÂ  ©r/   r/   r/   Z LoadingT)Útimer   Úreadr   ÚflipÚintÚnpÚpiÚ	rectangleÚcosÚsinÚcircleÚ putTextÚFONT_HERSHEY_SIMPLEXÚimshowÚ waitKeyÚ
+destroyWindow)r%   Ú
+start_timeZ
+load_durationZwindow_createdÚretÚimgÚprogressÚangleÚcenterÚradiusZcircle_xZcircle_yr'   r'   r(   Ú loading'   s8   
+â!ÿz
+CVApp.loadingc              
+   C   s¤  g d¢}|D ]É\}}}}} }t j |¡ršt |tj¡}	|	d ur…t |	|| || f¡}	|	j d dkrz|	d d …d d …df }
+|	d d …d d …dd…f }	|||…||…f }
+t |
+¡}tj	|
+|
+|d}
+tj	|	|	|
+d}t 
+|
+|¡}||||…||…f< q®|	|||…||…f< q®t
+d |› ƒ t |||f||fdd	¡ nt
+d
+|› ƒ t |||f||fdd	¡ |  
+¡ }t|ƒD ]\}}t ||||d
+ |d  ftjdd
+d¡  q¶q|S )N) )éd   rO   éÈ   rP   zVolume ControlzEC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\Volume+.png)r-   rO   r.   rP   z	Paint AppzFC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\PaintApp.png)r6   rO   éX  rP   z
+Math AI AppzDC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\MathAI.png)é¼  rO   r*   rP   zPresentation AppzNC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\PresentationLogo.png)rO   r-   rP   r.   z	Pong GamezFC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\PONGGame.png)r-   r-   r.   r.   z
+Virtual MousezJC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\VirtualMouse.png)r6   r-   rQ   r.   zFitness TrackerzLC:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\FitnessTracker.pngr,   r
+   r   r   )ÚmaskzFailed to load image: )r   r   r   r1   zImage file not found: r4   r   r7   )ÚosÚpathÚexistsr   r!   r"   r$   ÚshapeÚ
+bitwise_notÚ
+bitwise_andÚaddÚprintr>   ÚsplitÚ	enumeraterB   ÚFONT_HERSHEY_PLAIN)r%   rI   Z buttonsÚx1Úy1Úx2Úy2ÚlabelZ	icon_pathÚiconrS   ÚroiZmask_invZimg_bgZ icon_fgÚdstÚlinesÚiÚliner'   r'   r(   Údraw_interfaceP   s2   
+
+*ÿzCVApp.draw_interfacec              	   C   s~   |  ¡ }t |dt |j|j¡dd¡}t  |dddd ¡ t |dd	tj	d
+d
+d¡  t |d
+dtj	d
+d
+d¡  t |d|dd¡}|S )Ng333333Ó?gffffffæ?r   )é„  rO   )éâ  r-   )é2   rm   rm   r1   z
+Create File)é˜  r+   r   r7   r,   ZLogOut)rn   r3   )
+Úcopyr   Ú
+addWeightedr<   ÚzerosrW   Údtyper>   rB   rC   )r%   rI   Ú overlayr'   r'   r(   Údraw_optionsŒ   s   zCVApp.draw_optionsc                 C   s   t  ¡  | j |¡ d S ©N)r   ÚdestroyAllWindowsr   Zadd_content_to_file)r%   r   r'   r'   r(   Ú
+create_fileœ   s   zCVApp.create_filec                 C   sr  |j d dkrt |tj¡}|j d dkrt |tj¡}|j \}}} |j \}}	}
+||	 |ks4|| |kr8tdƒ‚|||| …|||	 …f }
+|j d dkrTt |tj¡}|j d dkrbt |tj¡}|dd…dd…dd…f }|dd…dd…df d }
+tddƒD ]'}|
+dd…dd…|f d |
+  |dd…dd…|f |
+  |
+dd…dd…|f< q|
+|||| …|||	 …f< |S )ze
+        Overlays an image (overlay) onto another image (background) at the position (x, y).
+        r,   r   z9Overlay image goes out of bounds of the background image.Ng     ào@r   r   )rW   r   ÚcvtColorÚCOLOR_BGR2BGRAÚ
+ValueErrorÚrange)r%   Ú
+backgroundrs   ÚxÚyZbg_hZbg_wZ
+bg_channelsZol_hZol_wZ
+ol_channelsre   Z
+overlay_imgZ
+alpha_maskÚcr'   r'   r(   Ú
+overlay_image    s&   LzCVApp.overlay_imageNc           
+       C   sÔ  |r|| _ 	 | j  ¡ \}}|sqt |d¡}| jj|dd\}}| jr(|   |¡}|rF| j |¡}| j 	|d ¡}|d d |d d  } }|d d |d d  }	}
+|d rž|d  ržt 
+|| |f|	|
+fd	d
+¡ d
+|   k rrdk rn n
+d
+|  k r~dk s™n d
+|	  k r‰dk rœn qFd
+|
+  k r–dk rœn qFd| _n¨|d rF|d  sFt 
+|| |fddd¡ | jröd|   k rÀdk sÍn d|	  k rËdk rón n&d|  k r×dk ràn n |  | j ¡ qöd|  k rêdk ròn qöt 
+¡  d S nd| _d|   k rdk r'n n#d|  k rdk r'n nt 
+¡  |  ¡  | j | j ¡ |  ¡  nd|   k r3dk rWn n"d|  k rAdk rWn nt 
+¡  |  ¡  | j | j ¡ |  ¡  nïd|   k rcdk r‡n n"d|  k rqdk r‡n nt 
+¡  |  ¡  | j | j ¡ |  ¡  n¿d|   k r“dk r·n n"d|  k r¡dk r·n nt 
+¡  |  ¡  | j | j ¡ |  ¡  nd|   k rÃdk rçn n"d|  k rÑdk rçn nt 
+¡  |  ¡  | j | j ¡ |  ¡  n_d|   k ródk rn n"d|  k rdk rn nt 
+¡  |  ¡  | j | j ¡ |  ¡  n/d|   k r#dk rFn n!d|  k r1dk rFn nt 
+¡  |  ¡  | j | j ¡ |  ¡  |  |¡ |  || jdd¡}t d|¡ t d¡ | jrit 
+¡  d S q)NTr   F)ÚflipTyper   é   r,   é   )r/   r   r/   r0   iL  i`  rm   éF   é   r5   r1   rk   rl   rO   rP   r-   r.   rR   r*   r6   rQ   i8  r4   rI   ) r   r9   r   r:   r   Ú	findHandsr    rt   ÚfindPositionÚ	fingersUpri   rA   rw   rv   rN   r   Úrunr   Údrawr   r   Z	play_gamer   r   r   Z run_apprj   r€   r#   rD   rE   r   )
+r%   r   rH   rI   ÚhandsÚlmlistÚ fingersr_   r`   ra   rb   r'   r'   r(   r‰   Ç   s”   
+b€.þ88
+8
+8
+8
+8
+8
+
+¯z	CVApp.runru   )
+Ú__name__Ú
+__module__Ú__qualname__r)   rN   rj   rt   rw   r€   r‰   r'   r'   r'   r(   r
+      s    )<'r
+   Ú__main__)r   r8   Únumpyr<   Zcvzone.HandTrackingModuler   r   ZVolume_Control.volume_controlr   ZPain_App.paint_appr   Z!Presentation_App.presentation_appr   ZPong_Game.pong_appr   ZVirtual_Mouse.virtual_mouser    ZMath_AI.math_AI_appr   Ú!Virtual_Keyboard.virtual_keyboardr	   ZFitness_Tracker.fitness_trackerr
+   rT   r
+   rŽ   Úappr‰   r'   r'   r'   r(   Ú<module>   s(      þ
