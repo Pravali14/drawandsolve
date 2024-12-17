@@ -1,0 +1,74 @@
+o
+    ‰ƒ¸f…  ã                   @   s\   d dl Z d dlZd dlZd dlmZ d dlm Z  G dd„ dƒZe	dkr,eƒ Z
+e
+ 
+¡  dS dS ) é    N)ÚHandDetector)ÚposeDetectorc                   @   sV   e Zd Zdd„ Zdd„ Zdd„ Zd d„ Zd	d
+„ Z d
+d„ Zd
+d„ Z	dd„ Z
+ddd„Z
+dS )ÚArmCurlsCounterc                 C   s†   t  d¡| _| j dd¡ | j dd¡ tƒ | _d| _d| _ d| _t	ƒ | _
+d| _
+d d dd	d
+œ| _d
+d dd	d
+œ| _
+d| _d| _d
+| _d S )Nr   é   i   é   éÐ  Úrighté2   éÈ   éd   )Úx1Úy1Úx2Úy2éú   i  g      ð?)Úcv2ÚVideoCaptureÚcapÚsetr   ÚdetectorÚcountÚdirÚpTimer   Úhands_DetectorÚ
+active_armÚ
+button_leftÚbutton_rightÚfÚlast_switch_timeÚswitch_delay)Úself© r!   ú\C:\Users\bhush\OneDrive\Desktop\PAVAN\Projects\CV_Desktop\Fitness_Tracker\fitness_tracker.pyÚ__init__   s   
+zArmCurlsCounter.__init__c           
+      C   s¦   | j  |d¡}| j  |d¡}t|ƒdkrQ| jdkr(d\}}}| j  ||||¡}nd\}}}| j  ||||¡}t  |dd ¡} t  |dd	¡}|  | ¡}	|  	|| ||	¡ |S )
+NFr   r   )é   é
+   é
+   )é   é   é   )éÒ   é6  )r   r
+   )éÜ   r+   )éŠ  r
+   )
+r   ZfindPoseÚfindPositionÚlenr   Ú	findAngleÚnpÚinterpÚupdate_countÚ draw_ui)
+r    ÚimgÚlmListZshoulderZelbowZwristÚangleÚperÚbarÚcolorr!   r!   r"   Ú
+process_frame   s   
+
+
+
+zArmCurlsCounter.process_framec                 C   s\   d}|dkrd}| j dkr|  jd7  _d| _ |dkr,d}| j dkr,|  jd7  _d| _ |S ) N)éÿ   r   r<   r
+   ©r   r<   r   r   g      à?é   )r   r   )r    r8   r:   r!   r!   r"   r3   (   s   
+
+zArmCurlsCounter.update_countc              	   C   s  t  |dddd¡ t  |dt|ƒfd|t j¡ t  |t|ƒ› dd t jd|d	¡  t  |d
+d
+dt j¡ t  |tt| j ƒƒd
+t jddd¡  t  |ddt jddd¡  |  || j	d| j
+dk¡ |  || j
+d| j
+dk¡ t ¡ | j
+ | jk rt  |ddt jddd	¡  d S d S )N)éL  r
+   )i—  r-   ©r
+   r
+   r
+   r   r?   ú%)i`  éK   r>   é   )r   iÂ  )r   r    )éõ   éu   r)   )é-   iž  ©r<   r<   r<   é   ZREPS)é(   i0  g      ø?é   zLeft ArmÚleftz	Right Armr   zSwitching...)iô  r	   )r   r   r<   )r   Ú	rectangleÚintÚFILLEDÚ putTextÚFONT_HERSHEY_SIMPLEXÚstrr   Ú
+draw_buttonr   r   r   Útimer   r   )r    r5   r8   r9   r:   r!   r!   r"   r4   6   s   ""ÿzArmCurlsCounter.draw_uic              	   C   sh   |rdnd}t  ||d |d f|d |d f|t j¡ t  |||d d  |d d ft jd	d
+d
+¡  d S )Nr=   r@   r   r
+   r   r   é
+   é#   çffffffæ?©r   r   r   rC   )r   rL   rN   rO   rP   )r    r5   ÚbuttonÚtextÚ	is_activer:   r!   r!   r"   rR   H   s   ,0zArmCurlsCounter.draw_buttonc              	   C   sB   t   ¡ }d|| j  }|| _t |dt|ƒ› dtjddd¡  |S )Nr>   zFPS: )r?   r	   rG   rC   )rS   r   r   rO   rM   rP   )r    r5   ÚcTimeÚfpsr!   r!   r"   Úshow_fpsM   s
+   "zArmCurlsCounter.show_fpsc                 C   sr  t   ¡ }d}| jd |d d   k r| jd k r5n n| jd |d d    k r0| jd k r5n nd	}n=| jd |d d   k rI| jd k rdn n| jd |d d    k r_| jd k rdn nd	}n|g d
+¢ksp|g d
+¢krrd	}|r’|| j | jkr’|  jd7  _|| _| jd  rd| _nd
+| _d|d d   k r dk rµn d S d|d d    k r²dk r·dS  d S d S d S )NFr   é   r>   r   r
+   rC   r   T)r>   r   r   r   r>   )r   r   r   r   r>   rK   r   é„  éè  r	   éZ   ) rS   r   r   r   r   r   r   )r    ÚlmlistÚ fingersÚcurrent_timeZ
+switch_armr!   r!   r"   Úhandle_clickT   s"   XX
+<ÿzArmCurlsCounter.handle_clickc              	   C   s„   t  |||dd¡ t  |||dd¡ |d d |d  d f}t  |||t jd	dd¡  t  |||d d |d  d ft jd	d
+d¡  |S )
+Nr=   éÿÿÿÿrW   rC   r   rT   r>   é   rV   rG   )r   rL   rO   rP   )r    ÚimageÚtop_leftÚbottom_rightrY   Ú
+text_positionr!   r!   r"   Údraw_rectangle_with_textj   s   $ÿz(ArmCurlsCounter.draw_rectangle_with_textNc                  C   sÜ   |r|| _ t d¡ 	 | j  ¡ \}}|sqht |d¡}| jj|ddd\}}|rC| j  |¡}|rC| j |d ¡}|  	||¡rCt 
+¡  qh|  
+|¡}|  |¡}|  
+|d dd	¡}t d|¡ t d¡d
+@ td
+ƒkrgqhq
+t 
+¡  d S )NzArm Curls CounterTr>   F)ÚdrawÚflipTyper   )r_   r	   )r`   ra   ÚBACKr<   Úq)r   r   Ú
+namedWindowÚreadÚflipr   Ú	findHandsr.   Ú	fingersUpre   ÚdestroyAllWindowsr;   r]   rl   ÚimshowÚ waitKeyÚord) r    ÚcamÚ successr5   Úhandsrb   rc   r!   r!   r"   Úrun{   s0   
+
+
+îzArmCurlsCounter.run)N)Ú__name__Ú
+__module__Ú__qualname__r#   r;   r3   r4   rR   r]   re   rl   r}   r!   r!   r!   r"   r       s     r   Ú__main__)r   Únumpyr1   rS   ÚHandsGestureDetectorr   ZFitness_Tracker.PoseModuler   r   r~   Zarm_curls_counterr}   r!   r!   r!   r"   Ú<module>   s     þ
